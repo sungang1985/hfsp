@@ -1,0 +1,81 @@
+<script setup>
+import BaseHeader from './components/layout/BaseHeader.vue'
+import MainMap from './components/layout/MainMap.vue';
+
+</script>
+
+<template>
+  <div class="common-layout">
+    <el-container>
+      <el-header>
+        <BaseHeader />
+      </el-header>
+      <el-main>
+        <MainMap />
+      </el-main>
+    </el-container>
+  </div>
+</template>
+
+<style>
+#app {
+  text-align: center;
+  color: var(--ep-text-color-primary);
+}
+
+
+.link-button label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 110%;
+}
+
+.leaflet-touch .link-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  background: #fff;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.link-button:hover {
+  background-color: #f4f4f4;
+  fill: #a200ff;
+}
+
+.link-button:hover:after {
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  content: attr(title);
+  right: 40px;
+  width: auto;
+  white-space: nowrap;
+  background: #fff;
+  padding: 5px;
+}
+
+.geojson {
+  display: none;
+}
+
+input[type="file"] {
+  font-size: 0;
+}
+
+::file-selector-button {
+  font-size: initial;
+}
+
+.icon-geojson {
+  width: 25px;
+  height: 25px;
+}
+</style>
