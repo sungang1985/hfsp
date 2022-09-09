@@ -6,37 +6,17 @@
 
 <script>
 import ExifReader from 'exifreader';
-
-function openFile(event) {
-    const input = event.target;
-
-    const reader = new FileReader();
-    reader.onload = function () {
-        const result = reader.result;
-        const tags = ExifReader.load(file);
-        console.log(tags);
-
-        Notiflix.Notify.info("The data has been loaded from the file");
-    };
-    reader.readAsText(input.files[0]);
-}
-
+import { useMapStore } from '../../stores/map'
 
 export default {
+    setup() {
+        const mapStore = useMapStore()
+
+        return {
+            mapStore,
+        }
+    },
     methods: {
-        openFile(event) {
-            const input = event.target;
-
-            const reader = new FileReader();
-            reader.onload = function () {
-                const result = reader.result;
-                const tags = ExifReader.load(file);
-                console.log(tags);
-
-                Notiflix.Notify.info("The data has been loaded from the file");
-            };
-            reader.readAsText(input.files[0]);
-        },
         setupLeafletMap() {
             // config map
             let config = {
@@ -51,7 +31,9 @@ export default {
             const lng = 21.01178;
 
             // calling map
-            const map = L.map("map", config).setView([lat, lng], zoom);
+            //const map = L.map("map", config).setView([lat, lng], zoom);
+            this.mapStore.init("map");
+            const map = this.mapStore.map;
 
             // Used to load and display tile layers on the map
             // Most tile servers require attribution, which you can set under `Layer`
@@ -121,9 +103,10 @@ export default {
                     return container;
                 },
             });
-            map.addControl(new customControl());
 
-            const loadImgFiles = document.querySelector("#geojson");
+            //map.addControl(new customControl());
+
+            /* const loadImgFiles = document.querySelector("#geojson");
 
             loadImgFiles.onchange = function (event) {
                 const input = event.target;
@@ -137,7 +120,7 @@ export default {
                     Notiflix.Notify.info("The data has been loaded from the file");
                 };
                 reader.readAsArrayBuffer(input.files[0]);
-            };
+            }; */
 
         },
     },
@@ -149,9 +132,10 @@ export default {
 </script>
 <style scoped>
 #container {
-    height: 85vh;
     display: flex;
     align-items: stretch;
+    overflow: auto;
+    height: 100%;
 }
 
 #map {

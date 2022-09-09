@@ -10,9 +10,11 @@ import MainMap from './components/layout/MainMap.vue';
       <el-header>
         <BaseHeader />
       </el-header>
-      <el-main>
-        <MainMap />
-      </el-main>
+      <el-container>
+        <el-main>
+          <MainMap />
+        </el-main>
+      </el-container>
     </el-container>
   </div>
 </template>
@@ -23,6 +25,17 @@ import MainMap from './components/layout/MainMap.vue';
   color: var(--ep-text-color-primary);
 }
 
+.common-layout {
+  height: 98vh;
+}
+
+.el-container {
+  overflow: hidden;
+}
+
+.el-container.is-vertical {
+  height: 100%;
+}
 
 .link-button label {
   cursor: pointer;

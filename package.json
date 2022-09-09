@@ -9,6 +9,7 @@
   "dependencies": {
     "element-plus": "^2.2.16",
     "exifreader": "^4.5.1",
+    "pinia": "^2.0.22",
     "vue": "^3.2.37"
   },
   "devDependencies": {
