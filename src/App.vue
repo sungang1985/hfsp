@@ -91,4 +91,15 @@ input[type="file"] {
   width: 25px;
   height: 25px;
 }
+
+
+.icon {
+  max-width: 70%;
+  max-height: 70%;
+  margin: 4px;
+}
+
+img {
+  border-style: none;
+}
 </style>

@@ -37,12 +37,36 @@ export default {
 
             // Used to load and display tile layers on the map
             // Most tile servers require attribution, which you can set under `Layer`
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            /* L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            }).addTo(map);
+            }).addTo(map); */
 
-
+            var style = {
+                color: 'red',
+                opacity: 1.0,
+                fillOpacity: 1.0,
+                weight: 2,
+                clickable: false
+            };
+            L.Control.FileLayerLoad.LABEL = '<img class="icon" src="./src/assets/folder.svg" alt="file icon"/>';
+            var control = L.Control.fileLayerLoad({
+                fitBounds: true,
+                layerOptions: {
+                    style: style,
+                    pointToLayer: function (data, latlng) {
+                        return L.circleMarker(
+                            latlng,
+                            { style: style }
+                        );
+                    }
+                }
+            });
+            control.addTo(map);
+            control.loader.on('data:loaded', function (e) {
+                var layer = e.layer;
+                console.log(layer);
+            });
 
             Notiflix.Notify.init({
                 width: "280px",

@@ -20,7 +20,16 @@ export const useMapStore = defineStore("leaflet", {
             const lng = 21.01178;
 
             // calling map
-            this.map = L.map(m, config).setView([lat, lng], zoom);
+            //this.map = L.map(m, config).setView([lat, lng], zoom);
+
+            var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; 2013 OpenStreetMap contributors'
+            });
+            this.map = L.map(m, {
+                center: [0, 0],
+                zoom: 2
+            }).addLayer(osm);
+            
         },
         setGPS(g) {
             this.gps = g;

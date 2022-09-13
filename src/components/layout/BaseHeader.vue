@@ -4,8 +4,8 @@
         <el-sub-menu index="2">
             <template #title>文件</template>
             <el-menu-item index="2-1">
-                <label id='loadImgFiles' for="inputTag" style="width: 100%;">打开文件<input id="inputTag"
-                        type="file" /></label>
+                <label id='loadImgFiles' for="inputTag" style="width: 100%;">打开文件夹<input id="inputTag" type="file"
+                        webkitdirectory multiple /></label>
             </el-menu-item>
             <el-menu-item index="2-2" @click="saveFile">保存文件</el-menu-item>
         </el-sub-menu>
@@ -90,7 +90,10 @@ export default {
         loadImgFiles.onchange = function (event) {
             const input = event.target;
 
-            const reader = new FileReader();
+            for (let i = 0; i < input.files.length; i++) {
+                console.log(input.files[i]);
+            }
+            /* const reader = new FileReader();
             reader.onload = function () {
                 const result = reader.result;
                 const tags = ExifReader.load(result, { expanded: true });
@@ -99,7 +102,7 @@ export default {
 
                 Notiflix.Notify.info("The data has been loaded from the file");
             };
-            reader.readAsArrayBuffer(input.files[0]);
+            reader.readAsArrayBuffer(input.files[0]); */
         };
     }
 };
